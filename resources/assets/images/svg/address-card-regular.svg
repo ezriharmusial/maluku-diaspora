@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 336H54a6 6 0 0 1-6-6V118a6 6 0 0 1 6-6h404a6 6 0 0 1 6 6v276a6 6 0 0 1-6 6zm-54-176H300c-6.627 0-12-5.373-12-12v-16c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v16c0 6.627-5.373 12-12 12zm0 72H300c-6.627 0-12-5.373-12-12v-16c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v16c0 6.627-5.373 12-12 12zM176 160c33.137 0 60 26.863 60 60s-26.863 60-60 60-60-26.863-60-60 26.863-60 60-60zm68.731 125.183l-26.742-6.686c-28.096 20.209-62.152 15.699-83.978 0l-26.742 6.686C91.243 289.189 80 303.589 80 320.108V334c0 9.941 8.059 18 18 18h156c9.941 0 18-8.059 18-18v-13.892c0-16.519-11.243-30.919-27.269-34.925z"/><style id="stylish-5" class="stylish" type="text/css">@namespace url(http://www.w3.org/1999/xhtml);
+.xdebug-var-dump {
+    padding: 4px 8px;
+    margin: 5px 10px;
+    font-family: Menlo, Monaco, "Consolas", "Lucida Console", "courier new" !important;
+    -moz-border-radius: 10px !important;
+    -webkit-border-radius: 10px !important;
+    -o-border-radius: 10px !important;
+    border-radius: 10px !important;
+    border: solid 3px #942343 !important;
+}
+.xdebug-error {
+    font-family: Tahoma !important;
+    -moz-border-radius: 10px !important;
+    -webkit-border-radius: 10px !important;
+    -o-border-radius: 10px !important;
+    border-radius: 10px !important;
+    border: solid 3px #942343 !important;
+}
+.xdebug-error td,
+.xdebug-error th {
+    padding: 4px !important;
+    border-collapse: collapse !important;
+}
+.xdebug-error &gt; tbody &gt; tr:first-child &gt; th {
+    background: #942343 !important;
+    color: #fff;
+    font-size: 22px;
+    font-weight: normal;
+    font-family: Verdana !important;
+}
+.xdebug-error &gt; tbody &gt; tr:first-child &gt; th span {
+    background: #f39800 !important;
+    margin: 2px;
+    padding: 5px;
+    line-height: 150%;
+    font-size: 12px !important;
+    vertical-align: middle;
+    color: #fff !important;
+    border: solid 2px #f39800;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
+    border-radius: 20px !important;
+    height: 20px;
+    display: block;
+    float: left;
+}
+.xdebug-error th {
+    background: -moz-linear-gradient(top, #fff, #ececec) !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ececec)) !important;
+}
+.xdebug-error th {
+    border-right: solid 1px #ececec !important;
+}
+.xdebug-error th:last-child {
+    border-right: 0 !important;
+}
+.xdebug-error td {
+    background: #fef9fb !important;
+    font-family: Menlo, Monaco, "Consolas", "Lucida Console", "courier new" !important;
+}
+.xdebug-error td {}
+.xdebug-error td {
+    border-right: dashed 1px #f0f0f0 !important;
+    border-bottom: dashed 1px #f0f0f0 !important;
+}
+.xdebug-error td:last-child {
+    border-right: 0 !important;
+}
+.xdebug-error tr:last-child td {
+    border-bottom: 0 !important;
+}
+.xdebug-error tr:last-child th,
+.xdebug-error tr:last-child td {
+    -moz-border-radius: 10px !important;
+    -webkit-border-radius: 10px !important;
+    -o-border-radius: 10px !important;
+    border-radius: 10px !important;
+}
+font {
+    width: 250px;
+    max-width: 250px;
+    overflow-x: hidden;
+}
+font[color="#00bb00"],
+font[color="#4e9a06"] {
+    color: #618e34 !important;
+}
+font[color="#ff0000"],
+font[color="#cc0000"] {
+    color: #d83473 !important;
+}
+font[color="#3465a4"] {
+    color: #0075c2 !important;
+}
+.xdebug-error .xdebug-var-dump {
+    padding: 0;
+    margin: 0;
+    -moz-border-radius: 10px !important;
+    -webkit-border-radius: 10px !important;
+    -o-border-radius: 10px !important;
+    border-radius: 10px !important;
+    border: none !important;
+}</style></svg>
