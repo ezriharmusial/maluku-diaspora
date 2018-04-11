@@ -1,0 +1,22 @@
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.is-active {
+  display: block;
+}
+
+.tab-pane.is-active > div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#map,
+#pano {
+  height: 100%;
+  width: 100%;
+}

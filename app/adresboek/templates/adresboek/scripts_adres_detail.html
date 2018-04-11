@@ -1,0 +1,68 @@
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-6mQUEWW8VQ-9GSkDwS9JM_uogtRNls8&callback=initialize&language=nl&region=NL">
+    </script>
+    <script>
+      var geocoder;
+      var map;
+      var panorama;
+
+      function initialize() {
+        var mapElement = document.getElementById('map'),
+        panoElement = document.getElementById('pano'),
+        adres = "{{ adres.volledig_adres }}",
+        geolocatie = {lat: {{ adres.postcode.breedtegraad }}, lng: {{ adres.postcode.lengtegraad }} };
+        geocoder = new google.maps.Geocoder()
+        geocoder.geocode( { 'address': adres }, function(results, status) {
+          if (status == 'OK') {
+            geolocatie = results[0].geometry.location;
+          } else {
+            document.getElementById('google-result').innerHTML = 'Kon het adres niet opzoeken want: ' + status;
+          }
+        });
+
+        var mapOptions = {
+          zoom: 17,
+          center: geolocatie,
+          mapTypeId: 'hybrid',
+        }
+
+        var panoOptions = {
+          position: geolocatie,
+          motionTracking: false,
+        }
+
+        map = new google.maps.Map(mapElement, mapOptions);
+        panorama = new google.maps.StreetViewPanorama(panoElement, panoOptions);
+
+        map.setStreetView(panorama);
+      }
+
+      function codeAddress() {
+        var zoek_adres = document.getElementById('id_vernomen_adres').value + ',Leerdam';
+        geocoder.geocode( { 'address': zoek_adres}, function(results, status) {
+          if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+            // Display Adress
+            document.getElementById('google-result').innerHTML = '<p>Adres: ' + results[0].formatted_address + '</p>';
+            // Update Picture
+            document.getElementById('streetview-image').src = 'https://maps.googleapis.com/maps/api/streetview?size=640x320&location=' + encodeURIComponent(results[0].formatted_address) + '&key=AIzaSyA-6mQUEWW8VQ-9GSkDwS9JM_uogtRNls8';
+            for (var i = 0; i < results[0].address_components.length; i++) {
+              var address_components = results[0].address_components[i];
+              if (address_components.types[0] == 'postal_code') {
+                console.log('postcode: ' + address_components.long_name);
+              }
+              if (address_components.types[0] == 'street_number') {
+                console.log('huisnummer: ' + address_components.long_name);
+              }
+            }
+
+          } else {
+            document.getElementById('google-result').innerHTML = 'Kon het adres niet opzoeken want: ' + status;
+          }
+        });
+      }
+    </script>

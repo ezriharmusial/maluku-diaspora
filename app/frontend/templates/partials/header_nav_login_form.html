@@ -1,0 +1,37 @@
+                <div class="navbar-item">
+                  <form class="field-body" method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                      <label class="label is-small has-text-white" for="{{ form.username.id_for_label}}">Gebruikersnaam</label>
+                      <p class="control has-icons-left">
+                        <input id="{{ form.username.id_for_label}}" class="input" name="{{ form.username.html_name}}" maxlength="254" type="text" autofocus="" required="" placeholder="Gebruikersnaam">
+                        <span class="icon is-left is-small">
+                          <i class="fas fa-user" aria-hidden="true"></i>
+                        </span>
+                      </p>
+                    </div>
+
+                    <div class="field">
+                      <label class="label is-small has-text-white" for="{{ form.password.id_for_label}}">Wachtwoord</label>
+                      <p class="control has-icons-left">
+                        <input id="{{ form.password.id_for_label}}" class="input" name="{{ form.password.html_name}}" type="password" placeholder="Wachtwoord" required="">
+                        <span class="icon is-left is-small">
+                          <i class="fas fa-key" aria-hidden="true"></i>
+                        </span>
+                      </p>
+                    </div>
+
+                    <div class="field">
+                      <label for="submit" class="label is-small has-text-white is-invisible"> Button</label>
+                      <p class="control">
+                        <button class="button is-info" value="login">
+                          <span class="icon">
+                            <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                          </span>
+                          <span>Inloggen</span>
+                        </button>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                      </p>
+                    </div>
+                  </form>
+                </div>

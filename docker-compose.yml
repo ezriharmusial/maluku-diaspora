@@ -4,16 +4,15 @@ services:
   db:
     image: postgres
     volumes:
-      - ./pgdata:/var/lib/postgresql/data/
+      - ../resources/ambon-diaspora/postgres-data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
-
   pgadmin:
     image: thajeztah/pgadmin4
+    volumes:
+    - ../resources/ambon-diaspora/pgadmin:/pgadmin
     ports:
       - "5050:5050"
-    volumes:
-      - ./pgadmin:/pgadmin
     depends_on:
       - db
 
@@ -22,11 +21,8 @@ services:
     command: python /code/manage.py migrate --noinput
     command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - ./app:/code
     ports:
       - "8000:8000"
     depends_on:
       - db
-
-volumes:
-  postgres_data:

@@ -1,0 +1,65 @@
+{% extends 'layout/base_generic.html' %}
+  {% block bodyclasses %} adresform is-scrollable-app has-navbar-fixed-top{% endblock %}
+
+    {% block 'navbar-icon' %}<i class="fas fa-address-book fa-angle-left" aria-hidden="true"></i>{% endblock %}
+
+    {% block 'navbar-title' %}
+      {% if object is None %}
+      Adres Toevoegen
+      {% else %}
+      Adres Bewerken
+      {% endif %}
+    {% endblock %}
+
+    {% block 'navbar-end' %}
+      {% include 'partials/header_nav_user_menu.html' %}
+    {% endblock %}
+
+      {% block content %}
+      <!-- Adres Detail view -->
+      <section class="detail-view is-scrollable">
+        {% block notifications %}
+        {% endblock %}
+        {% include 'adresboek/partials/adres_details_tabs.html' %}
+
+        <!-- Adres Details -->
+        <form action="" method="post">
+          <section id="address" class="section">
+            {% include 'forms/form_generic.html' %}
+          </section>
+          <section id="beheer-buttons" class="section">
+            <div class="buttons is-right">
+          {% if object is None %}
+              <a class="button is-info is-outlined" href="{% url 'adresboek:adres_lijst'%}">
+                <span class="icon"><i class="fas fa-ban" aria-hidden="true"></i></span>
+                <span>Annuleren</span>
+              </a>
+          {% else %}
+              <a class="button is-danger is-outlined" href="{% url 'adresboek:adres_verwijderen' adres.slug %}">
+                <span class="icon"><i class="fas fa-trash" aria-hidden="true"></i></span>
+                <span>Verwijderen</span>
+              </a>
+              <a class="button is-info is-outlined" href="{% url 'adresboek:adres_details' adres.slug %}">
+                <span class="icon"><i class="fas fa-ban" aria-hidden="true"></i></span>
+                <span>Annuleren</span>
+              </a>
+          {% endif %}
+              <button class="button is-primary">
+                <span class="icon"><i class="fas fa-edit" aria-hidden="true"></i></span>
+                <span>Opslaan</span>
+              </button>
+            </div>
+          </section>
+        </form>
+        {% endblock %}
+      </section>
+
+{% block footer-scripts %}
+  {{ block.super }}
+  {% include 'adresboek/scripts_adres_detail.html' %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.css" integrity="sha256-F8Yt3Csor9Ar3RYONieuFKswACNtWYTAXXTf/LFYsls=" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js" integrity="sha256-HyBiZFJAMvxOhZoWOc5LWIWaN1gcFi8LjS75BZF4afg=" crossorigin="anonymous"></script>
+  <script>
+    $('select').selectize();
+  </script>
+{% endblock %}

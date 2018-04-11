@@ -1,0 +1,61 @@
+{% include "partials/head.html" %}
+  <body class="adresboek {% block bodyclasses %}{% endblock %}{% if user.is_authenticated %} is-logged-in{% else %} login is-logged-out{% endif %}">
+
+    <!-- Header Navigation -->
+    <nav class="navbar is-danger is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="container is-fluid">
+        <!-- Hidden Checkbox hack trigger for Pure CSS toggle -->
+        <input type="checkbox" id="menu-toggle" class="is-hidden">
+
+        <div class="navbar-brand">
+          <a href="/" class="navbar-item{% if user.is_authenticated %}{% else %} is-size-5{% endif %}">
+            <span class="icon">
+              {% block 'navbar-icon' %}<i class="fas fa-address-book fa-fw" aria-hidden="true"></i>{% endblock %}
+            </span>
+            <span class="has-text-weight-bold is-uppercase">
+              {% block 'navbar-title' %}Ambon Diaspora | Adresboek{% endblock %}
+            </span>
+          </a>
+          <div class="navbar-item has-text-centered">
+          </div>
+        </div>
+        <label for="menu-toggle" class="nav-toggle navbar-burger button is-danger is-rounded is-small">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <div class="navbar-menu nav-menu">
+          <div class="navbar-end">
+          {% block 'navbar-end' %}
+          {% if user.is_authenticated %}
+            {% include 'partials/header_nav_user_menu.html' %}
+          {% else %}
+            {% include 'partials/header_nav_site_menu.html' %}
+          {% endif %}
+          {% endblock %}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {% if user.is_authenticated %}
+    <main class="is-scrollcontainer">
+    {% else %}
+    <main class="hero {% block hero-color %}is-light{% endblock %} is-bold is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+    {% endif %}
+          {% block notifications %}{% endblock %}
+          {% block content %}{% endblock %}
+    {% if user.is_authenticated %}
+    {% else %}
+        </div>
+      </div>
+    {% endif %}
+    </main>
+    {% load l10n %}{% localize off %}{% block footer-scripts %}
+      {% include 'partials/footer_scripts.html' %}
+    {% endblock %}{% endlocalize %}
+  </body>
+</html>

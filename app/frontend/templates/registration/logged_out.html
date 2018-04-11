@@ -1,0 +1,21 @@
+{% extends "layout/base_generic.html" %}
+    {% block 'header-nav' %}
+      {% include "partials/header_nav_site_menu.html" %}
+    {% endblock %}
+
+  {% block content %}
+          <div class="tile is-ancestor">
+            <div class="tile is-vertical is-5">
+              <div class="tile is-parent">
+                <article class="tile is-child notification is-light box">
+                  <p class="title is-size-3"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>Uitgelogd</p>
+                  <p class="subtitle is-size-4">U bent succesvol uitgelogd</p>
+                  <p>U kunt <a href="{% url 'login'%}">hier</a> opnieuw inloggen</p>
+                </article>
+              </div>
+              <div class="level">
+                <!-- <a class="level-item" href="../">Hulp Nodig?</a> -->
+              </div>
+            </div>
+          </div>
+  {% endblock %}

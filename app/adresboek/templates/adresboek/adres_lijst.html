@@ -1,0 +1,77 @@
+{% extends 'layout/base_generic.html' %}
+  {% block bodyclasses %} adreslijst is-scrollable-app has-navbar-fixed-top{% endblock %}
+
+    {% block 'navbar-title' %}
+      Adresboek
+    {% endblock %}
+
+    {% block 'header-nav' %}
+      {% include 'adresboek/header_nav_user_menu.html' with title='Adresboek' %}
+    {% endblock %}
+
+      {% block content %}
+
+      <!-- Adres List content -->
+      <section id="adres-lijst" class="list-view tile is-parent is-vertical is-scrollable">
+        <!-- Search -->
+        <div class="adres search tile notification is-danger is-radiusless">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right is-expanded">
+              <input id="zoek-adres-lijst" class="input is-small is-warning is-rounded" type="text" placeholder="Zoek in Adresboek...">
+              <span class="icon is-small is-left">
+                <i class="fas fa-address-book" aria-hidden="true"></i>
+              </span>
+              <span class="icon is-small is-right is-">
+                <i class="fas fa-search" aria-hidden="true"></i>
+              </span>
+            </p>
+            <p class="help has-text-centered">
+              <div class="tags has-addons">
+                <span class="tag is-danger">
+                Sorteer
+                </span>
+                <span class="tag is-white sort" data-sort="bewoners">
+                bewoners
+                </span>
+                <span class="tag is-white sort" data-sort="straat">
+                straat
+                </span>
+                <span class="tag is-white sort" data-sort="postcode">
+                postcode
+                </span>
+              </div>
+<!--               <span class="tag is-white sort" data-sort="plaatsnaam">
+              plaatsnaam
+              </span> -->
+            </p>
+          </div>
+        </div>
+
+        <ul class="list">
+        {% for adres in adres_list %}
+          <!-- Article -->
+          <li class="adres is-radiusless notification {% if adres.bewoners == 'Bewoners Onbekend' %} is-info{% elif adres.compleet == 0 %} is-warning{% endif %}">
+            <div>
+            {% include 'adresboek/partials/adres_details_info.html' %}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endblock %}
+
+    {% block footer-scripts %}
+    {{ block.super }}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script>
+      var options = {
+        valueNames: [ 'bewoners', 'onvolledig', 'straat', 'postcode', 'plaatsnaam' ],
+      };
+
+      var adreslijst = new List('adres-lijst', options);
+      $('#zoek-adres-lijst').on('keyup', function() {
+        var searchString = $(this).val();
+        adreslijst.search(searchString);
+      });
+    </script>
+    {% endblock %}

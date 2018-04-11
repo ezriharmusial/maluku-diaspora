@@ -1,0 +1,53 @@
+/** Colors */
+$primary:               #27ae60;
+
+// Import Bulma's initial variables
+@import "../../../node_modules/bulma/sass/utilities/initial-variables.sass";
+@import "../../../node_modules/bulma/sass/utilities/functions.sass";
+
+/** Colors */
+$primary: $red;
+$secondary: #27ae60 !default;
+$danger: $red;
+$warning: $yellow;
+$success: $green;
+$calm: #63bda1 !default;
+$info: $cyan;
+$light: $white-ter;
+$dark: $grey-darker;
+
+$secondary-invert: $black !default;
+$calm-invert: $white !default;
+
+/** Link colors */
+$link: $primary;
+
+/** Box Model */
+$spacer: 2rem;
+
+/** Body */
+$body-background-color: $light;
+$body-color: $dark;
+$background: $light;
+
+/** Form */
+$label-color: $dark;
+
+@import "../../../node_modules/bulma/sass/utilities/derived-variables.sass";
+@import "../../../node_modules/bulma/sass/utilities/animations.sass";
+@import "../../../node_modules/bulma/sass/utilities/mixins.sass";
+@import "../../../node_modules/bulma/sass/utilities/controls.sass";
+
+/** Tabs */
+$tabs-boxed-link-active-background-color: $light;
+
+/** Create Colors */
+$colors: map-merge(
+  (
+    "secondary": ($secondary,
+    $secondary-invert),
+    "calm": ($calm,
+    $calm-invert),
+  ),
+  $colors
+);

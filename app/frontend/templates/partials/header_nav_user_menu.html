@@ -1,0 +1,71 @@
+{% load static %}
+            <a class="navbar-item" href="{% url 'adresboek:adres_toevoegen' %}">
+              <span class="icon">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+              </span>
+              <span>Adres Toevoegen</span>
+            </a>
+            <!-- Meldingen -->
+            <!--div class="navbar-item has-dropdown is-hoverable">
+              <div class="navbar-link">
+                <span class="icon">
+                  <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                </span>
+                <span>Melding maken</span>
+              </div>
+              <div class="navbar-dropdown">
+                <a class="navbar-item" href="#">
+                  <span class="icon">
+                    <i class="fas fa-truck" aria-hidden="true"></i>
+                  </span>
+                  <span>Verhuizing melden</span>
+                </a>
+                <a class="navbar-item" href="#">
+                  <span class="icon">
+                    <i class="fas fa-child" aria-hidden="true"></i>
+                  </span>
+                  <span>Geboorte melden</span>
+                </a>
+                <a class="navbar-item" href="#">
+                  <span class="icon">
+                    <i class="fas fa-user" aria-hidden="true"></i></span>
+                  <span>Overlijden melden</span>
+                </a>
+              </div>
+            </div-->
+            <!-- Usermenu -->
+            <div class="navbar-item has-dropdown is-hoverable">
+              <div class="navbar-link">
+                <figure class="icon ">
+                  <img class="fa-fw is-circular" src="{% static 'frontend/images/placeholders/32x32.png' %}" />
+                </figure>
+                <span class=""> {{ user }}</span>
+              </div>
+              <div class="navbar-dropdown">
+                <!--a class="navbar-item" href="#">
+                  <span class="icon">
+                    <i class="fas fa-user-circle" aria-hidden="true"> </i>
+                  </span>
+                  <span>Mijn Profiel</span>
+                </a>
+                <a class="navbar-item">
+                  <span class="icon">
+                    <i class="fas fa-cog" aria-hidden="true"> </i>
+                  </span>
+                  <span>Instellingen</span>
+                </a>
+                <hr class="navbar-divider"-->
+                <a class="navbar-item" href="{% url 'missie' %}">
+                  <span class="icon">
+                    <i class="fab fa-black-tie" aria-hidden="true"></i>
+                  </span>
+                  <span>Missie</span>
+                </a>
+                <a class="navbar-item" href="{% url 'logout' %}">
+                  <span class="icon">
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                  </span>
+                  <span>Uitloggen</span>
+                </a>
+              </div>
+            </div>

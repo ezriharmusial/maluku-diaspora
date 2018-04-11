@@ -1,0 +1,40 @@
+{% extends 'layout/base_generic.html' %}
+  {% block bodyclasses %} adres-details is-scrollable-app has-navbar-fixed-top{% endblock %}
+
+    {% block 'navbar-title' %}
+      Adres Verwijderen
+    {% endblock %}
+
+    {% block 'navbar-end' %}
+      {% include 'partials/header_nav_user_menu.html' %}
+    {% endblock %}
+
+      {% block content %}
+      <!-- Adres Detail view -->
+      <section class="detail-view is-scrollable">
+        {% block notifications %}
+        {% endblock %}
+        {% include 'adresboek/partials/adres_details_tabs.html' %}
+        <div id="beheer-knoppen" class="section">
+          <p>Weet u zeker dat u dit adres permanent wilt verwijderen? Dit is bamelijk niet meer ongedaan te maken.</p>
+          <div class="buttons is-right">
+            <form action="" method="POST">
+              {% csrf_token %}
+              <button class="button is-danger is-outlined">
+                <span class="icon"><i class="fas fa-trash" aria-hidden="true"></i></span>
+                <span>Verwijderen</span>
+              </button>
+              <a class="button is-info" href="{% url 'adresboek:adres_details' adres.slug %}">
+                <span class="icon"><i class="fas fa-ban" aria-hidden="true"></i></span>
+                <span>annuleren</span>
+              </a>
+            </form>
+          </div>
+        </div>
+      </section>
+      {% endblock %}
+
+    {% block footer-scripts %}
+    {{ block.super }}
+    {% include 'adresboek/scripts_adres_detail.html' %}
+    {% endblock %}

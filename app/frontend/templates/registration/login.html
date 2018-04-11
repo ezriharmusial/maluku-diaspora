@@ -1,0 +1,88 @@
+{% extends "layout/base_generic.html" %}
+    {% block 'header-nav' %}
+      {% include "partials/header_nav_site_menu.html" %}
+    {% endblock %}
+
+  {% block content %}
+          <div class="tile is-ancestor">
+            <div class="tile is-vertical is-5">
+              <div class="tile is-parent is-vertical">
+                <div class="tabs is-boxed is-size-6">
+                  <ul>
+                    <li class="tab is-active">
+                      <a class="" href="#inloggen">
+                        <span class="icon">
+                          <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                        </span>
+                        <span>Inloggen</span>
+                      </a>
+                    </li>
+<!--                     <li class="tab">
+                      <a class="" href="#registreren">
+                        <span class="icon">
+                          <i class="fas fa-user-plus" aria-hidden="true"></i>
+                        </span>
+                        <span>Registreren</span>
+                      </a>
+                    </li>
+ -->                  </ul>
+                </div>
+                <div class="tab-content">
+                  <div id="inloggen" class="tab-pane animated">
+                    <section class="tile is-child notification is-light box">
+                      {% if form.errors %}
+                      <p class="notification is-warning">
+                        <p>Uw gebruikersnaam en wachtwoord komen niet overeen. Probeert u het opnieuw.</p>
+                      </p>
+                      {% endif %}
+                      {% if next %}
+                        {% if user.is_authenticated %}
+                      <p class="notification is-warning">
+                        <p>Alleen medewerkers hebben toestemming om dit gedeelte van de site te betreden. Login met een medewerkers account om hier binnen te treden.</p>
+                      </p>
+                        {% else %}
+                      <!--p class="notification is-danger">
+                        Om van <span class="is-uppercase">Ambon Diaspora</span> gebruik te maken, dient u in te loggen zijn. geeft nog geen account, druk dan op de knop
+                          <i class="fas fa-user-plus" aria-hidden="true"></i> Registreren om een account aan te maken.
+                      </p-->
+                        {% endif %}
+                      {% endif %}
+                      <div class="content">
+                        <!-- Content -->
+                        <form method="post">
+                          {% include 'forms/form_generic.html' %}
+                          <div class="buttons is-right">
+                            <button class="button is-danger" href="#">
+                              <span class="icon">
+                                <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                              </span>
+                              <span>Inloggen</span>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </section>
+                  </div>
+                  <div id="registreren" class="tab-pane animated">
+                    <section class="tile is-child notification is-light box">
+                      <form method="post">
+                        <div class="field">
+                          <div class="control">
+                            <label class="checkbox">
+                              <input type="checkbox">
+                              Ik ga akkoord met de <a href="#">algemene voorwaarden</a>
+                            </label>
+                          </div>
+                        </div>
+                      </form>
+                    </section>
+                  </div>
+                </div>
+              </div>
+              <div class="level">
+                <a class="level-item" href="{% url 'password_reset' %}">Wachtwoord vergeten</a>
+                <!-- <a class="level-item" href="../">Hulp Nodig?</a> -->
+              </div>
+            </div>
+          </div>
+  {% endblock %}

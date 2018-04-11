@@ -1,0 +1,46 @@
+            {% csrf_token %}
+            {% for field in form %}
+              {% if field.is_hidden %}
+                 {{ field }}
+              {% elif field.label == 'Postcode'%}
+            <div class="field">
+              <label for="{{ field.id_for_label}}" class="label is-small">{{ field.label }}</label>
+              <p class="control has-icons-left is-expanded">
+                <span class="select is-fullwidth">
+                 {{ field }}
+                </span>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope-open"></i>
+                </span>
+              </p>
+            </div>
+              {% else %}
+            <!-- {{ field.label }} -->
+            {% if field.label == 'Vernomen adres' %}<label for="{{ field.id_for_label}}" class="label is-small">{{ field.label }}</label>{% endif %}
+            <div class="field{% if field.label == 'Vernomen adres' %} is-grouped{% endif %}">
+{% if field.label != 'Vernomen adres' %}              <label for="{{ field.id_for_label}}" class="label is-small">{{ field.label }}</label>{% endif %}
+              <p class="control is-expanded has-icons-left">
+                <input id="{{ field.id_for_label}}" class="input" name="{{ field.html_name}}" type="{% if field.label == 'Wachtwoord' %}password{% else %}text{% endif %}" placeholder="{{ field.label }}"{% if field.value == 0 or field.value %} value="{{ field.value }}"{% endif %}>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-{% if field.label == 'Vernomen bewoners' %}users{% elif field.label == 'Vernomen adres' %}home{% elif field.label == 'Huisnummer' %}home{% elif field.label == 'Toevoeging' %}plus{% elif field.label == 'Gebruikersnaam' %}user{% elif field.label == 'Wachtwoord' %}key{% endif %}" aria-hidden="true"></i>
+                </span>
+              </p>
+              {% if field.errors %}
+              <p class="help is-danger">{{ field.errors }}</p>
+              {% elif field.help_text %}
+              <p class="help">{{ field.help_text|safe }}</p>
+              {% endif %}
+              {% if field.label == 'Vernomen adres' %}
+              <p class="control">
+                <a class="button is-info" onclick="codeAddress()">
+                  <span class="icon is-small"><i class="fas fa-map"></i></span>
+                  <span>Opzoeken</span>
+                </a>
+              </p>
+              {% endif %}
+            </div>
+            {% if field.label == 'Vernomen adres' %}
+            <p id="google-result" class="help"></p>
+            {% endif %}
+              {% endif %}
+            {% endfor %}

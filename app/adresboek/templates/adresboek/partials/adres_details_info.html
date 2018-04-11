@@ -1,0 +1,23 @@
+          <div class="large-media">
+          <a href="{{ adres.get_absolute_url }}"></a>
+            <figure class="image is-2by1">
+              {{ adres.google_streetview_image_html }}
+            </figure>
+            <div class="content">
+              <p>
+                <span class="bewoners is-size-5">
+                  {{ adres.bewoners }}
+                </span><br />
+                <span class="is-size-6">
+                  {% if adres.compleet %}
+                    <span class="straat">{{ adres.postcode.straatnaam }} {{ adres.huisnummer }} {{ adres.toevoeging }}</span><br />
+                    <span class="postcode">{{ adres.postcode.postcode }}</span>, <span class="plaatsnaam">{{ adres.postcode.plaatsnaam }}</span> <br />
+                  {% elif adres.vernomen_adres %}
+                    <span class="onvolledig">{{ adres.vernomen_adres }}<br />(Adres Onvolledig)</span>
+                  {% else %}
+                    <span class="onbekend">(Adres onbekend)</span>
+                  {% endif %}
+                </span>
+              </p>
+            </div>
+          </div>

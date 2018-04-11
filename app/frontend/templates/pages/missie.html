@@ -1,0 +1,27 @@
+{% extends "layout/base_generic.html" %}
+    {% block 'header-nav' %}
+      {% include "partials/header_nav_site_menu.html" %}
+    {% endblock %}
+
+  {% block content %}
+          <div class="tile is-ancestor">
+            <div class="tile is-parent">
+              <article class="tile is-child notification">
+                <div class="content">
+                  <p class="title">
+                    <span class="is-uppercase">Al ons contact op één plek</span>
+                  </p>
+                  <p class="subtitle">Ambon Diaspora verbindt en brengt samen.</p>
+                  <div class="content">
+                    <!-- Content -->
+                    <p><span class="icon is-large"><i class="fas fa-home fa-2x" aria-hidden="true"></i></span> Adressen opzoeken <span class="has-text-weight-light">van Familie en Bekenden</span></p>
+                    <p><span class="icon is-large"><i class="fas fa-address-card fa-2x" aria-hidden="true"></i></span> Contactgegevens delen <span class="has-text-weight-light">met andere gebruikers</span></p>
+                    <p><span class="icon is-large"><i class="fas fa-sitemap fa-2x" aria-hidden="true"></i></span> Online genealogie <span class="has-text-weight-light">van en voor de gemeenschap</span></p>
+                    <!--p><span class="icon is-large"><i class="fas fa-newspaper fa-2x" aria-hidden="true"></i></span> Belangrijk Nieuws <span class="has-text-weight-light">van en voor de gemeenschap</span></p-->
+                    <!--p><span class="icon is-large"><i class="fas fa-bullhorn fa-2x" aria-hidden="true"></i></span> Belangrijk Mededelingen <span class="has-text-weight-light">van en voor de gemeenschap</span></p-->
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+  {% endblock %}

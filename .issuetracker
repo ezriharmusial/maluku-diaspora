@@ -1,0 +1,4 @@
+* Android tablet covers Adresboek Forms in Chrome Webapp
+* "Opzoeken" button should autofill Adresboek form
+* Adresboek Form Postcode Default should be 0000AA
+* After saving Unknown vernomen adres, screen is empty
