@@ -1,0 +1,10 @@
+.env
+.bashcommands
+.dockerignore
+.cache-loader
+*.lock
+migrations
+__pycache__
+*.pyc
+app/frontend/static
+node_modules
