@@ -1,5 +1,4 @@
 from django.test import TestCase
-import uuid
 
 # Create your tests here.
 
@@ -20,12 +19,11 @@ class PostcodeModelTest(TestCase):
             lengtegraad='5.0767838385945'
         )
 
-    def expected_object_name_is_postcode(self):
-        postcode = Postcode.objects.get(id=1)
-        expected_object_name = '%s' % (postcode.postcode)
+    def test_expected_object_name_is_postcode(self):
+        postcode = Postcode.objects.get(postcode='4142EA')
         self.assertEquals(
-            expected_object_name,
-            str(postcode)
+            str(postcode),
+            '4142EA'
         )
 
 
@@ -97,30 +95,41 @@ class AdresModelTest(TestCase):
         )
 
     # if self.compleet:
-    def expected_volledig_adres_vernomen(self):
+    def test_expected_volledig_adres_vernomen(self):
         adres = Adres.objects.get(slug='4142EA13')
         self.assertEquals(
-            adres.volledig_adres,
+            adres.volledig_adres(),
             'Populierstraat 13, 4142EA Leerdam'
         )
 
     # elif self.vernomen_adres:
-    def expected_volledig_adres_compleet(self):
-        adres = Adres.objects.get(id=5)
+    def test_expected_volledig_adres_compleet(self):
+        adres = Adres.objects.get(vernomen_adres='Ergens aan de Straatweg')
         self.assertEquals(
-            adres.volledig_adres,
+            adres.volledig_adres(),
             'Ergens aan de Straatweg, Leerdam'
         )
 
     # else:
-    def expected_volledig_adres_onbekend(self):
-        adres = Adres.objects.get(id=6)
+    def test_expected_volledig_adres_onbekend(self):
+        adres = Adres.objects.get(vernomen_bewoners='Jan en Antje')
         self.assertEquals(
-            adres.volledig_adres,
+            adres.volledig_adres(),
             'Adres Onbekend'
         )
 
     def test_get_absolute_url(self):
         adres = Adres.objects.get(slug='4142EA13')
         # This will also fail if the urlconf is not defined.
-        self.assertEquals(adres.get_absolute_url(),'/adressen/details/4142EA13/')
+        self.assertEquals(
+            adres.get_absolute_url(),
+            '/adressen/details/4142EA13/'
+        )
+
+    def test_adres_urlformat(self):
+        adres = Adres.objects.get(slug='4142EA13')
+        self.assertEquals(
+            adres.adres_urlformat(),
+            'Populierstraat%2013,%204142EA%20Leerdam'
+        )
+
