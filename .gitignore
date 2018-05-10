@@ -9,4 +9,4 @@ __pycache__
 *.pyc
 app/frontend/static
 node_modules
-*.log
+package-lock.json
