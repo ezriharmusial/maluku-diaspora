@@ -1,21 +1,12 @@
 from django.urls import path
 from . import views
-# from rest_framework.routers import DefaultRouter
 
 # Register our App name
 app_name = 'adresboek'
 
-# Create a router and register our viewsets with it.
-# router = DefaultRouter()
-# router.register(r'adressen', views.AdresJsonViewSet)
-# router.register(r'users', views.UserViewSet)
-
-#Dynamic Pages Postcodes
-urlpatterns = [
-]
 
 #Dynamic Pages Adressem
-urlpatterns += [
+urlpatterns = [
     # ex /adressen
     path('', views.AdresListView.as_view(), name='adres_lijst'),
     path('adressen/toevoegen/', views.AdresCreate.as_view(), name='adres_toevoegen'),

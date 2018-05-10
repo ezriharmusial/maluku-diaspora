@@ -10,8 +10,8 @@
                 </span><br />
                 <span class="is-size-6">
                   {% if adres.compleet %}
-                    <span class="straat">{{ adres.postcode.straatnaam }} {{ adres.huisnummer }} {{ adres.toevoeging }}</span><br />
-                    <span class="postcode">{{ adres.postcode.postcode }}</span>, <span class="plaatsnaam">{{ adres.postcode.plaatsnaam }}</span> <br />
+                    <span class="straat">{{ adres.straatnaam }} {{ adres.huisnummer }} {{ adres.toevoeging }}</span><br />
+                    <span class="postcode">{{ adres.postcode }}</span>, <span class="plaatsnaam">{{ adres.plaatsnaam }}</span> <br />
                   {% elif adres.vernomen_adres %}
                     <span class="onvolledig">{{ adres.vernomen_adres }}<br />(Adres Onvolledig)</span>
                   {% else %}

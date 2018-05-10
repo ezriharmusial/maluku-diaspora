@@ -1,7 +1,8 @@
 .env
 .bashcommands
-.dockerignore
+.issuetracker
 .cache-loader
+.coverage*
 *.lock
 *.log
 migrations

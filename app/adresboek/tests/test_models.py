@@ -2,60 +2,22 @@ from django.test import TestCase
 
 # Create your tests here.
 
-from adresboek.models import Adres, Postcode
-
-
-class PostcodeModelTest(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        Postcode.objects.create(
-            postcode='4142EA',
-            straatnaam='Populierstraat',
-            plaatsnaam='Leerdam',
-            deelgemeente='Leerdam',
-            provincie='ZH',
-            breedtegraad='51.8895226862398',
-            lengtegraad='5.0767838385945'
-        )
-
-    def test_expected_object_name_is_postcode(self):
-        postcode = Postcode.objects.get(postcode='4142EA')
-        self.assertEquals(
-            str(postcode),
-            '4142EA'
-        )
+from adresboek.models import Adres
 
 
 class AdresModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        Postcode.objects.create(
-            postcode='0000AA',
-            straatnaam='--',
-            plaatsnaam='--',
-            deelgemeente='--',
-            provincie='FR',
-            breedtegraad='0',
-            lengtegraad='0',
-        )
-
-        Postcode.objects.create(
-            postcode='4142EA',
-            straatnaam='Populierstraat',
-            plaatsnaam='Leerdam',
-            deelgemeente='Leerdam',
-            provincie='ZH',
-            breedtegraad='51.8895226862398',
-            lengtegraad='5.0767838385945',
-        )
-
         Adres.objects.create(
             slug='4142EA13',
             vernomen_bewoners='"Mevr. Harmusial (Francien)"',
             vernomen_adres='Populierstraat 13',
-            postcode_id=2,
+            straatnaam='Populierstraat',
             huisnummer=13,
+            postcode='4142EA',
+            plaatsnaam='Leerdam',
+            deelgemeente='Leerdam',
+            provincie='ZH',
             toevoeging='',
             in_de_wijk=1,
             compleet=1,
@@ -65,9 +27,13 @@ class AdresModelTest(TestCase):
             slug='4142EA15',
             vernomen_bewoners='',
             vernomen_adres='Populierstraat 15',
-            postcode_id=2,
+            straatnaam='Populierstraat',
             huisnummer=15,
             toevoeging='',
+            postcode='4142EA',
+            plaatsnaam='Leerdam',
+            deelgemeente='Leerdam',
+            provincie='ZH',
             in_de_wijk=1,
             compleet=1,
         )
@@ -76,9 +42,13 @@ class AdresModelTest(TestCase):
             slug='',
             vernomen_bewoners='Pietje',
             vernomen_adres='Ergens aan de Straatweg',
-            postcode_id=1,
+            straatnaam='--',
             huisnummer=0,
             toevoeging='',
+            postcode='0000AA',
+            plaatsnaam='--',
+            deelgemeente='--',
+            provincie='FR',
             in_de_wijk=0,
             compleet=0,
         )
@@ -87,9 +57,13 @@ class AdresModelTest(TestCase):
             slug='',
             vernomen_bewoners='Jan en Antje',
             vernomen_adres='',
-            postcode_id=1,
+            straatnaam='--',
             huisnummer=0,
             toevoeging='',
+            postcode='0000AA',
+            plaatsnaam='--',
+            deelgemeente='--',
+            provincie='FR',
             in_de_wijk=0,
             compleet=0,
         )

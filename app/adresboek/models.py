@@ -6,9 +6,10 @@ import uuid
 
 
 # Create your models here.
-class Postcode(models.Model):
+class Adres(models.Model):
     class Meta:
-        ordering = ['postcode']
+        verbose_name_plural = 'Adressen'
+        ordering = ['-compleet', 'postcode', 'huisnummer']
 
     PROVINCIES = (
         ('DR', 'Drenthe'),
@@ -25,14 +26,35 @@ class Postcode(models.Model):
         ('ZH', 'Zuid-Holland'),
     )
 
-    postcode = models.CharField(
-        max_length=6,
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        unique=True,
+    )
+    slug = models.CharField(
+        max_length=36,
+        unique=True,
+        default=uuid.uuid4,
+    )
+    vernomen_adres = models.CharField(
+        max_length=100,
         blank=True,
-        help_text='Formaat: 0000AA',
+        default='',
     )
     straatnaam = models.CharField(
         max_length=100,
         blank=True,
+    )
+    huisnummer = models.PositiveSmallIntegerField(default=0)
+    toevoeging = models.CharField(
+        max_length=6,
+        blank=True,
+        default='',
+    )
+    postcode = models.CharField(
+        max_length=6,
+        blank=True,
+        help_text='Formaat: 0000AA',
     )
     plaatsnaam = models.CharField(
         max_length=100,
@@ -47,71 +69,25 @@ class Postcode(models.Model):
         choices=PROVINCIES,
         blank=True,
     )
-    breedtegraad = models.DecimalField(
-        max_digits=15,
-        decimal_places=13,
-        null=True,
-    )
-    lengtegraad = models.DecimalField(
-        max_digits=16,
-        decimal_places=13,
-        null=True,
-    )
-    wijzigings_datum = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return self.postcode
-
-
-# Create your models here.
-class Adres(models.Model):
-    class Meta:
-        verbose_name_plural = 'Adressen'
-        ordering = ['-compleet', 'postcode', 'huisnummer']
-
-    id = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        unique=True,
-    )
-    slug = models.CharField(
-        max_length=36,
-        unique=True,
-        default=uuid.uuid4,
-    )
     vernomen_bewoners = models.CharField(
         max_length=100,
         blank=True,
         default='',
     )
-    vernomen_adres = models.CharField(
-        max_length=100,
-        blank=True,
-        default='',
-    )
-    postcode = models.ForeignKey(
-        Postcode,
-        on_delete=models.SET_NULL,
-        null=True,
-    )
-    huisnummer = models.PositiveSmallIntegerField(default=0)
-    toevoeging = models.CharField(
-        max_length=6,
-        blank=True,
-        default='',
-    )
     in_de_wijk = models.NullBooleanField()
+    #debug
     compleet = models.BooleanField(default=0)
-    google_maps_image = models.ImageField(
-        blank=True,
-        upload_to='images/external_api_cache/google_maps/',
-        default='',
-    )
-    google_streetview_image = models.ImageField(
-        blank=True,
-        upload_to='images/external_api_cache/google_streetview/',
-        default='',
-    )
+
+    # google_maps_image = models.ImageField(
+    #     blank=True,
+    #     upload_to='images/external_api_cache/google_maps/',
+    #     default='',
+    # )
+    # google_streetview_image = models.ImageField(
+    #     blank=True,
+    #     upload_to='images/external_api_cache/google_streetview/',
+    #     default='',
+    # )
     wijzigings_datum = models.DateField('Laatst gewijzigd', auto_now=True)
 
     def bewoners(self):
@@ -126,26 +102,14 @@ class Adres(models.Model):
         else:
             return True
 
-    def straatnaam(self):
-        return self.postcode.straatnaam
-
-    def plaatsnaam(self):
-        return self.postcode.plaatsnaam
-
-    def deelgemeente(self):
-        return self.postcode.deelgemeente
-
-    def provincie(self):
-        return self.postcode.provincie
-
     def volledig_adres(self):
         if self.compleet:
             volledig_adres = '%s %s%s, %s %s' % (
-                self.postcode.straatnaam,
+                self.straatnaam,
                 self.huisnummer,
                 self.toevoeging,
-                self.postcode.postcode,
-                self.postcode.plaatsnaam,
+                self.postcode,
+                self.plaatsnaam,
             )
         elif self.vernomen_adres:
             volledig_adres = self.vernomen_adres + ', Leerdam'
@@ -195,9 +159,9 @@ class Adres(models.Model):
 
     def save(self, *args, **kwargs):
         # Check compleet on Save and change appropriately
-        if self.postcode.postcode == '0000AA' or self.huisnummer is 0:
+        if self.postcode == '0000AA' or self.huisnummer is 0:
             self.compleet = False
-        elif self.postcode.postcode is not '0000AA':
+        elif self.postcode is not '0000AA':
             self.compleet = True
 
         # Create UUID for UUID-les Incomplete Adresses
@@ -207,7 +171,7 @@ class Adres(models.Model):
         elif self.compleet is True:
             # Create Slug
             slug = '%s%s%s' % (
-                self.postcode.postcode,
+                self.postcode,
                 self.huisnummer,
                 self.toevoeging,
             )
