@@ -46,8 +46,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    # 'rest_framework',
-    # 'webpack_loader',
+    'import_export',
 ]
 
 PROJECT_APPS = []

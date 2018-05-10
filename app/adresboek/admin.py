@@ -1,3 +1,4 @@
+from import_export.admin import ImportExportModelAdmin
 from .models import Adres
 from django.contrib import admin
 
@@ -14,7 +15,8 @@ adresboek_admin_site = AdresboekAdminSite(name='adresboek_admin')
 
 
 # Object Admin Classes
-class AdresAdmin(admin.ModelAdmin):
+# class AdresAdmin(admin.ModelAdmin):
+class AdresAdmin(ImportExportModelAdmin):
     list_filter = (
         'in_de_wijk',
         'compleet',

@@ -3,11 +3,12 @@
 .issuetracker
 .cache-loader
 .coverage*
+.git*
 *.lock
 *.log
-migrations
-__pycache__
 *.pyc
+__pycache__
 app/frontend/static
+migrations
 node_modules
 package-lock.json
