@@ -57,6 +57,25 @@
           </li>
           {% endfor %}
         </ul>
+        <ul>
+          <li class="adres adres-toevoegen is-radiusless notification is-primary">
+            <div class="large-media">
+            <a href="{% url 'adresboek:adres_toevoegen' %}"></a>
+              <figure class="image is-2by1">
+                <div class="fa-layers fa-fw fa-5x" style="position: absolute;margin: auto;top: 0;left: 0;right: 0;bottom: 0;">
+                  <i class="fas fa-home"></i>
+                  <i class="fas fa-plus" data-fa-transform="shrink-7 right-5" style="color:#661626"></i>
+                  <i class="fas fa-plus" data-fa-transform="shrink-8 right-5"></i>
+                </div>
+              </figure>
+              <div class="content">
+                <p>
+                  <span class="bewoners is-size-5">Adres Toevoegen</span>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
       </section>
       {% endblock %}
 
